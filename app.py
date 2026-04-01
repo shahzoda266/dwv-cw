@@ -344,7 +344,10 @@ if page == "Upload & Overview":
                     "https://www.googleapis.com/auth/spreadsheets.readonly",
                     "https://www.googleapis.com/auth/drive.readonly"
                 ]
-                creds = Credentials.from_service_account_file("credentials.json", scopes=scopes)
+                creds = Credentials.from_service_account_info(
+                    st.secrets["google"],
+                    scopes=scopes
+                )
                 client = gspread.authorize(creds)
                 sheet = client.open_by_url(sheet_url)
                 worksheet = sheet.get_worksheet(0)
