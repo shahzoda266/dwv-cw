@@ -353,7 +353,7 @@ if page == "Upload & Overview":
                 worksheet = sheet.get_worksheet(0)
                 data = worksheet.get_all_records()
                 df = pd.DataFrame(data)
-
+                df = df.replace(r'^\s*$', np.nan, regex=True)
                 if df.empty:
                     st.warning("The sheet appears to be empty.")
                 else:
